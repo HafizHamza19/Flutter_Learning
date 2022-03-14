@@ -1,18 +1,27 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterlearn/flutteruidemo.dart';
+import 'package:flutterlearn/getx/ui/Counter.dart';
 import 'package:flutterlearn/getxImplementation/ui/ShoppingUi.dart';
 import 'package:flutterlearn/login.dart';
 import 'package:flutterlearn/provider/loginprovider.dart';
+import 'package:flutterlearn/provider/newLogin.dart';
 import 'package:provider/provider.dart';
+
+import 'figma.dart';
+import 'form/ui/InsertDetail.dart';
+import 'loginnew.dart';
+import 'newUi.dart';
 
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: ShoppingUi(),
+    // home: ShoppingUi(),
     //home: InsertDetail(),
     //home: Figma(),
-  ) /*MyApp()*/);
+    home: MyApp(),
+  ));
 }
 
 /*class MyApp extends StatelessWidget {
@@ -110,6 +119,74 @@ class _RandomList extends State<RandomWords> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer: Drawer(
+          child: ListView(
+            // Important: Remove any padding from the ListView.
+            padding: EdgeInsets.zero,
+            children: [
+              const DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.blue,
+                ),
+                child: Text('Drawer Header'),
+              ),
+              ListTile(
+                title: const Text('Login 1'),
+                onTap: () {
+                  navigationRoutes(Login());
+                },
+              ),
+              ListTile(
+                title: const Text('Login 2'),
+                onTap: () {
+                  navigationRoutes(LoginNew());
+                },
+              ),
+              ListTile(
+                title: const Text('Login 3'),
+                onTap: () {
+                  navigationRoutes(newUi());
+                },
+              ),
+              ListTile(
+                title: const Text('Sqflite Crud'),
+                onTap: () {
+                  navigationRoutes(NewLogin());
+                },
+              ),
+              ListTile(
+                title: const Text('Simple Form'),
+                onTap: () {
+                  navigationRoutes(InsertDetail());
+                },
+              ),
+              ListTile(
+                title: const Text('Shopping'),
+                onTap: () {
+                  navigationRoutes(ShoppingUi());
+                },
+              ),
+              ListTile(
+                title: const Text('Figma'),
+                onTap: () {
+                  navigationRoutes(Figma());
+                },
+              ),
+              ListTile(
+                title: const Text('Ui Demon'),
+                onTap: () {
+                  navigationRoutes(UiDemo());
+                },
+              ),
+              ListTile(
+                title: const Text('Counter'),
+                onTap: () {
+                  navigationRoutes(Counter());
+                },
+              ),
+            ],
+          ),
+        ),
         appBar: AppBar(title: Text("Listview"), actions: [
           IconButton(icon: Icon(Icons.list), onPressed: _pushSaved)
         ]),
@@ -149,4 +226,9 @@ class _RandomList extends State<RandomWords> {
       ),
     );
   }
+
+  void navigationRoutes(covariant navigate) => Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => navigate),
+      );
 }
