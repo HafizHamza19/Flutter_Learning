@@ -120,10 +120,10 @@ class _RandomList extends State<RandomWords> {
   Widget build(BuildContext context) {
     return Scaffold(
         drawer: Drawer(
-          child: ListView(
-            // Important: Remove any padding from the ListView.
-            padding: EdgeInsets.zero,
-            children: [
+            child: ListView(
+                // Important: Remove any padding from the ListView.
+                padding: EdgeInsets.zero,
+                children: [
               const DrawerHeader(
                 decoration: BoxDecoration(
                   color: Colors.blue,
@@ -184,9 +184,24 @@ class _RandomList extends State<RandomWords> {
                   navigationRoutes(Counter());
                 },
               ),
-            ],
-          ),
-        ),
+              expensionList("Expend list", [
+                buildDrawerItem(
+                  text: "Item 1",
+                  icon: Icons.update,
+                  onTap: () {},
+                ),
+                buildDrawerItem(
+                  text: "Item 2",
+                  icon: Icons.offline_pin_outlined,
+                  onTap: () {},
+                ),
+                buildDrawerItem(
+                  text: "Item 3",
+                  icon: Icons.medical_services_sharp,
+                  onTap: () {},
+                )
+              ])
+            ])),
         appBar: AppBar(title: Text("Listview"), actions: [
           IconButton(icon: Icon(Icons.list), onPressed: _pushSaved)
         ]),
@@ -231,4 +246,56 @@ class _RandomList extends State<RandomWords> {
         context,
         MaterialPageRoute(builder: (context) => navigate),
       );
+
+  Widget expensionList(String title, List<Widget>? expansionChildren) {
+    return ExpansionTile(
+      initiallyExpanded: false,
+      maintainState: true,
+      title: SizedBox(
+        width: 30,
+        child: Row(
+          children: [
+            const Padding(
+              padding: EdgeInsets.only(left: 4.0),
+              child: Icon(
+                Icons.list,
+                size: 20,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: Text(
+                title!,
+              ),
+            ),
+          ],
+        ),
+      ),
+      // leading:  tileIcon,
+      trailing: const SizedBox(
+        height: 0,
+        width: 0,
+      ),
+      childrenPadding: const EdgeInsets.only(left: 2, right: 2, bottom: 2),
+      children: expansionChildren!,
+    );
+  }
+
+  Widget buildDrawerItem(
+      {required IconData icon,
+      required String text,
+      required GestureTapCallback onTap}) {
+    return ListTile(
+      title: Row(
+        children: <Widget>[
+          Icon(icon),
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: Text(text),
+          ),
+        ],
+      ),
+      onTap: onTap,
+    );
+  }
 }
