@@ -3,6 +3,8 @@
    <application
         android:label="flutterlearn"
         android:icon="@mipmap/ic_launcher">
+
+
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -37,5 +39,8 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+       <!-- Google Map Api Key Info -->
+       <meta-data android:name="com.google.android.geo.API_KEY"
+           android:value="YOUR API KEY"/>
     </application>
 </manifest>

@@ -5,6 +5,7 @@ import 'package:flutterlearn/flutteruidemo.dart';
 import 'package:flutterlearn/getx/ui/Counter.dart';
 import 'package:flutterlearn/getxImplementation/ui/ShoppingUi.dart';
 import 'package:flutterlearn/login.dart';
+import 'package:flutterlearn/mapSample/MapSample.dart';
 import 'package:flutterlearn/provider/loginprovider.dart';
 import 'package:flutterlearn/provider/newLogin.dart';
 import 'package:provider/provider.dart';
@@ -186,9 +187,11 @@ class _RandomList extends State<RandomWords> {
               ),
               expensionList("Expend list", [
                 buildDrawerItem(
-                  text: "Item 1",
+                  text: "Map",
                   icon: Icons.update,
-                  onTap: () {},
+                  onTap: () {
+                    navigationRoutes(MapSample());
+                  },
                 ),
                 buildDrawerItem(
                   text: "Item 2",
@@ -243,9 +246,7 @@ class _RandomList extends State<RandomWords> {
   }
 
   void navigationRoutes(covariant navigate) => Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => navigate),
-      );
+      context, MaterialPageRoute(builder: (context) => navigate));
 
   Widget expensionList(String title, List<Widget>? expansionChildren) {
     return ExpansionTile(
@@ -265,7 +266,7 @@ class _RandomList extends State<RandomWords> {
             Padding(
               padding: const EdgeInsets.only(left: 8.0),
               child: Text(
-                title!,
+                title,
               ),
             ),
           ],
